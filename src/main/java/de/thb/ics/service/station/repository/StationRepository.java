@@ -21,7 +21,7 @@ public class StationRepository {
                 .fetch();
     }
 
-    public Optional<StationRecord> findById(long id) {
+    public Optional<StationRecord> findById(String id) {
         return context.selectFrom(STATION)
                 .where(STATION.ID.eq(id))
                 .fetchOptional();
@@ -34,7 +34,7 @@ public class StationRepository {
                 .fetchOne();
     }
 
-    public Optional<StationRecord> update(long id, StationRecord record) {
+    public Optional<StationRecord> update(String id, StationRecord record) {
         return context.update(STATION)
                 .set(record)
                 .where(STATION.ID.eq(id))
@@ -42,7 +42,7 @@ public class StationRepository {
                 .fetchOptional();
     }
 
-    public Optional<StationRecord> delete(long id) {
+    public Optional<StationRecord> delete(String id) {
         return context.delete(STATION)
                 .where(STATION.ID.eq(id))
                 .returning()

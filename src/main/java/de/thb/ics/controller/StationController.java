@@ -1,5 +1,6 @@
 package de.thb.ics.controller;
 
+import de.thb.ics.controller.exception.ResourceExistsException;
 import de.thb.ics.controller.exception.ResourceNotFoundException;
 import de.thb.ics.service.station.StationService;
 import de.thb.ics.service.station.model.Station;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/stations/")
@@ -33,9 +35,24 @@ public class StationController {
             @ApiResponse(responseCode = "404", description = "Station not found.", content = @Content)
     })
     @GetMapping("/{id}/")
-    public Station getStation(@PathVariable("id") long id) {
+    public Station getStation(@PathVariable("id") String id) {
         return stationService.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Operation(summary = "Create Station.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200"),
+            @ApiResponse(responseCode = "409", description = "Station already exists.", content = @Content)
+    })
+    @PostMapping()
+    public Station createStation(@RequestBody Station station) {
+        Optional<Station> newStation = stationService.createStation(station);
+        if (newStation.isPresent()) {
+            return newStation.get();
+        } else {
+            throw new ResourceExistsException();
+        }
     }
 
     @Operation(summary = "Update Station.")
@@ -44,9 +61,13 @@ public class StationController {
             @ApiResponse(responseCode = "404", description = "Station not found.", content = @Content)
     })
     @PutMapping("/{id}/")
-    public Station updateStation(@PathVariable("id") long id,
+    public Station updateStation(@PathVariable("id") String id,
                                  @RequestBody Station station) {
-        // TODO
-        return null;
+        Optional<Station> updatedStation = stationService.updateStation(id, station);
+        if (updatedStation.isPresent()) {
+            return updatedStation.get();
+        } else {
+            throw new ResourceNotFoundException();
+        }
     }
 }

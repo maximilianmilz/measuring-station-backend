@@ -1,6 +1,6 @@
 CREATE TABLE station
 (
-    id       bigserial primary key,
+    id       varchar(8) primary key,
     date     date not null,
     target   int  not null,
     actual   int  not null,

@@ -9,8 +9,8 @@ import java.time.LocalDate;
 @Value
 @Builder
 public class Station {
-    @Schema(example = "42")
-    long stationId;
+    @Schema(example = "NV141")
+    String stationId;
 
     @Schema(example = "2006-05-26")
     LocalDate date;

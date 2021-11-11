@@ -1,0 +1,51 @@
+package de.thb.ics.service.station.repository;
+
+import de.thb.ics.service.station.jooq.tables.records.StationRecord;
+import lombok.RequiredArgsConstructor;
+import org.jooq.DSLContext;
+import org.springframework.stereotype.Repository;
+
+import static de.thb.ics.service.station.jooq.tables.Station.STATION;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+@RequiredArgsConstructor
+public class StationRepository {
+    private final DSLContext context;
+
+    public List<StationRecord> findAll() {
+        return context.selectFrom(STATION)
+                .orderBy(STATION.ID.asc())
+                .fetch();
+    }
+
+    public Optional<StationRecord> findById(long id) {
+        return context.selectFrom(STATION)
+                .where(STATION.ID.eq(id))
+                .fetchOptional();
+    }
+
+    public StationRecord create(StationRecord record) {
+        return context.insertInto(STATION)
+                .set(record)
+                .returning()
+                .fetchOne();
+    }
+
+    public Optional<StationRecord> update(long id, StationRecord record) {
+        return context.update(STATION)
+                .set(record)
+                .where(STATION.ID.eq(id))
+                .returning()
+                .fetchOptional();
+    }
+
+    public Optional<StationRecord> delete(long id) {
+        return context.delete(STATION)
+                .where(STATION.ID.eq(id))
+                .returning()
+                .fetchOptional();
+    }
+}

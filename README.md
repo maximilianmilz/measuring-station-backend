@@ -1,6 +1,3 @@
-# Ice cream station backend
-
-Beschreibung folgt
 ## Du willst arbeiten?
 * PostgreSQL installieren
 * Datenbank credentials in application.properties ändern

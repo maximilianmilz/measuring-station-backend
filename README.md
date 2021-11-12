@@ -1,8 +1,7 @@
 ## Du willst arbeiten?
-* PostgreSQL installieren
-* Datenbank credentials in application.properties ändern
-* Anwendung starten
-* Freuen :-)
+* Install the latest [PostgreSQL server](https://www.postgresql.org/download/).
+* Change database credentials and URL in [application.properties](src/main/resources/application.properties).
+* Start the application :)
 
 ## Requirements
 

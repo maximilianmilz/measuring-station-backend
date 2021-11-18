@@ -46,7 +46,6 @@ public class StationService {
     public Optional<Station> updateStation(String id, Station station) {
         Optional<StationRecord> record = stationRepository.findById(id);
         if (record.isPresent()) {
-            // TODO id ??? Konsultationsfrage !!!
             record.get().setDate(station.getDate());
             record.get().setActual(station.getActual());
             record.get().setVariance(calculateVariance(record.get().getTarget(), station.getActual()));

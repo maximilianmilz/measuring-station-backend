@@ -2,8 +2,8 @@ package de.thb.ics.controller;
 
 import de.thb.ics.controller.exception.ResourceExistsException;
 import de.thb.ics.controller.exception.ResourceNotFoundException;
-import de.thb.ics.service.station.StationService;
-import de.thb.ics.service.station.model.Station;
+import de.thb.ics.service.StationService;
+import de.thb.ics.model.Station;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

@@ -1,11 +1,11 @@
-package de.thb.ics.service.station.repository;
+package de.thb.ics.repository;
 
-import de.thb.ics.service.station.jooq.tables.records.StationRecord;
+import de.thb.ics.jooq.tables.records.StationRecord;
 import lombok.RequiredArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 
-import static de.thb.ics.service.station.jooq.tables.Station.STATION;
+import static de.thb.ics.jooq.tables.Station.STATION;
 
 import java.util.List;
 import java.util.Optional;

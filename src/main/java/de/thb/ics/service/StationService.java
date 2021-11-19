@@ -1,8 +1,8 @@
-package de.thb.ics.service.station;
+package de.thb.ics.service;
 
-import de.thb.ics.service.station.jooq.tables.records.StationRecord;
-import de.thb.ics.service.station.model.Station;
-import de.thb.ics.service.station.repository.StationRepository;
+import de.thb.ics.jooq.tables.records.StationRecord;
+import de.thb.ics.model.Station;
+import de.thb.ics.repository.StationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

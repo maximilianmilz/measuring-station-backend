@@ -62,7 +62,7 @@
                 <artifactId>jooq-codegen-maven</artifactId>
                 <executions>
                     <execution>
-                        <id>cop-farm-schema</id>
+                        <id>station-schema</id>
                         <phase>generate-sources</phase>
                         <goals>
                             <goal>generate</goal>
@@ -84,7 +84,7 @@
                                     <javaTimeTypes>true</javaTimeTypes>
                                 </generate>
                                 <target>
-                                    <packageName>de.thb.ics.service.station.jooq</packageName>
+                                    <packageName>de.thb.ics.jooq</packageName>
                                     <directory>../src/main/java</directory>
                                 </target>
                             </generator>

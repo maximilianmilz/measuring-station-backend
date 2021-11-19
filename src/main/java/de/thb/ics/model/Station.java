@@ -1,4 +1,4 @@
-package de.thb.ics.service.station.model;
+package de.thb.ics.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

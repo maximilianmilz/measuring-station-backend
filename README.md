@@ -8,3 +8,17 @@
 * JDK 11
 * PostgreSQL
 * Lombok
+
+## jOOQ Model Generation
+
+The jOOQ generation takes place in a different project `jooq`.
+
+Requirements/preparation:
+* check usage of JVM 13
+* check `pom.xml` if jOOQ and postgreSQL library versions match with main project.
+
+The following commands will create the jOOQ models.
+```bash
+cd jooq
+mvn generate-sources
+```

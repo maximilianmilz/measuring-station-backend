@@ -1,7 +1,7 @@
-package de.thb.ics.controller;
+package de.thb.ics.api.rest;
 
-import de.thb.ics.controller.exception.ResourceExistsException;
-import de.thb.ics.controller.exception.ResourceNotFoundException;
+import de.thb.ics.api.rest.exception.ResourceExistsException;
+import de.thb.ics.api.rest.exception.ResourceNotFoundException;
 import de.thb.ics.service.StationService;
 import de.thb.ics.model.Station;
 import io.swagger.v3.oas.annotations.Operation;

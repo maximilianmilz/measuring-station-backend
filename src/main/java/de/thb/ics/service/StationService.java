@@ -63,7 +63,7 @@ public class StationService {
     }
 
     @Scheduled(fixedRate = 30000)
-    private Station createRandomStation() {
+    private void createRandomStation() {
         StationRecord record = new StationRecord();
 
         int target = getRandomInt(1, 100);
@@ -77,8 +77,6 @@ public class StationService {
         Station station = map(stationRepository.create(record));
 
         log.debug("Created new Station (id={}).", station.getId());
-
-        return station;
     }
 
     private int getRandomInt(int min, int max) {

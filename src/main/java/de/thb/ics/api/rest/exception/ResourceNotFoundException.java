@@ -1,4 +1,4 @@
-package de.thb.ics.controller.exception;
+package de.thb.ics.api.rest.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

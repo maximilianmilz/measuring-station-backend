@@ -31,7 +31,7 @@ public class StationService {
     }
 
     public Optional<Station> createStation(Station station) {
-        if (stationRepository.findById(station.getStationId()).isPresent()) {
+        if (stationRepository.findById(station.getId()).isPresent()) {
             return Optional.empty();
         } else {
             StationRecord record = new StationRecord();
@@ -76,7 +76,7 @@ public class StationService {
 
         Station station = map(stationRepository.create(record));
 
-        log.info("Created new Station (id={}).", station.getStationId());
+        log.info("Created new Station (id={}).", station.getId());
 
         return station;
     }
@@ -87,7 +87,7 @@ public class StationService {
 
     public Station map(StationRecord record) {
         return Station.builder()
-                .stationId(record.getId())
+                .id(record.getId())
                 .date(record.getDate())
                 .target(record.getTarget())
                 .actual(record.getActual())

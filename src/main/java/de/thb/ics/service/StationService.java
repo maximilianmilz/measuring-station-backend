@@ -59,17 +59,6 @@ public class StationService {
         return target - actual;
     }
 
-    public StationRecord map(Station station) {
-        StationRecord record = new StationRecord();
-
-        record.setDate(station.getDate());
-        record.setTarget(station.getTarget());
-        record.setActual(station.getActual());
-        record.setVariance(station.getVariance());
-
-        return record;
-    }
-
     public Station map(StationRecord record) {
         return Station.builder()
                 .stationId(record.getId())

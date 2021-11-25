@@ -4,6 +4,8 @@ import de.thb.ics.jooq.tables.records.StationRecord;
 import de.thb.ics.model.Station;
 import de.thb.ics.repository.StationRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StationService {
@@ -59,15 +62,27 @@ public class StationService {
         return target - actual;
     }
 
-    public StationRecord map(Station station) {
+    @Scheduled(fixedRate = 30000)
+    private Station createRandomStation() {
         StationRecord record = new StationRecord();
 
-        record.setDate(station.getDate());
-        record.setTarget(station.getTarget());
-        record.setActual(station.getActual());
-        record.setVariance(station.getVariance());
+        int target = getRandomInt(1, 100);
+        int actual = getRandomInt(0, target);
 
-        return record;
+        record.setDate(LocalDate.now());
+        record.setTarget(target);
+        record.setActual(actual);
+        record.setVariance(calculateVariance(target, actual));
+
+        Station station = map(stationRepository.create(record));
+
+        log.info("Created new Station (id={}).", station.getStationId());
+
+        return station;
+    }
+
+    private int getRandomInt(int min, int max) {
+        return (int) (Math.random() * (max - min) + min);
     }
 
     public Station map(StationRecord record) {

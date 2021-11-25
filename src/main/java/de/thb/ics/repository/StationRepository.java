@@ -2,20 +2,28 @@ package de.thb.ics.repository;
 
 import de.thb.ics.jooq.tables.records.StationRecord;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jooq.DSLContext;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
+import static de.thb.ics.configuration.CacheConfiguration.REPOSITORY_CACHE_MANAGER;
+import static de.thb.ics.configuration.CacheConfiguration.STATION_REPOSITORY_CACHE;
 import static de.thb.ics.jooq.tables.Station.STATION;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class StationRepository {
     private final DSLContext context;
 
+    @Cacheable(cacheManager = REPOSITORY_CACHE_MANAGER, cacheNames = STATION_REPOSITORY_CACHE)
     public List<StationRecord> findAll() {
+        log.info("Find all stations method called.");
         return context.selectFrom(STATION)
                 .orderBy(STATION.ID.asc())
                 .fetch();
@@ -27,7 +35,9 @@ public class StationRepository {
                 .fetchOptional();
     }
 
+    @CacheEvict(cacheManager = REPOSITORY_CACHE_MANAGER, cacheNames = STATION_REPOSITORY_CACHE, allEntries = true)
     public StationRecord create(StationRecord record) {
+        log.info("Cache cleared.");
         return context.insertInto(STATION)
                 .set(record)
                 .returning()

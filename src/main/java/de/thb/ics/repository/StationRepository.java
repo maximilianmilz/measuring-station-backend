@@ -23,7 +23,7 @@ public class StationRepository {
 
     @Cacheable(cacheManager = REPOSITORY_CACHE_MANAGER, cacheNames = STATION_REPOSITORY_CACHE)
     public List<StationRecord> findAll() {
-        log.info("Find all stations method called.");
+        log.debug("Called findAll stations method.");
         return context.selectFrom(STATION)
                 .orderBy(STATION.ID.asc())
                 .fetch();
@@ -37,7 +37,7 @@ public class StationRepository {
 
     @CacheEvict(cacheManager = REPOSITORY_CACHE_MANAGER, cacheNames = STATION_REPOSITORY_CACHE, allEntries = true)
     public StationRecord create(StationRecord record) {
-        log.info("Cache cleared.");
+        log.debug("Cleared cache.");
         return context.insertInto(STATION)
                 .set(record)
                 .returning()

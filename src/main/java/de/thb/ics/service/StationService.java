@@ -76,7 +76,7 @@ public class StationService {
 
         Station station = map(stationRepository.create(record));
 
-        log.info("Created new Station (id={}).", station.getId());
+        log.debug("Created new Station (id={}).", station.getId());
 
         return station;
     }

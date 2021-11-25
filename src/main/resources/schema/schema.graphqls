@@ -20,7 +20,6 @@ type QueryRootType {
 type MutationRootType {
     addStation(station: StationInput): Station
     updateStation(id: ID! station: StationInput!): Station!
-    deleteStation(id: ID!): Station!
 }
 
 type SubscriptionRootType {

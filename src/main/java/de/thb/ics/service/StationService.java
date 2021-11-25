@@ -23,7 +23,7 @@ public class StationService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<Station> findById(String id) {
+    public Optional<Station> findById(long id) {
         return stationRepository.findById(id).map(this::map);
     }
 
@@ -33,7 +33,6 @@ public class StationService {
         } else {
             StationRecord record = new StationRecord();
 
-            record.setId(station.getStationId());
             record.setDate(LocalDate.now());
             record.setTarget(station.getTarget());
             record.setActual(station.getActual());
@@ -43,7 +42,7 @@ public class StationService {
         }
     }
 
-    public Optional<Station> updateStation(String id, Station station) {
+    public Optional<Station> updateStation(long id, Station station) {
         Optional<StationRecord> record = stationRepository.findById(id);
         if (record.isPresent()) {
             record.get().setDate(station.getDate());

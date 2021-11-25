@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Builder
 public class Station {
     @Schema(example = "NV141")
-    String stationId;
+    long stationId;
 
     @Schema(example = "2006-05-26")
     LocalDate date;

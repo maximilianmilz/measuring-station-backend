@@ -44,6 +44,7 @@ public class StationRepository {
                 .fetchOne();
     }
 
+    @CacheEvict(cacheManager = REPOSITORY_CACHE_MANAGER, cacheNames = STATION_REPOSITORY_CACHE, allEntries = true)
     public Optional<StationRecord> update(long id, StationRecord record) {
         return context.update(STATION)
                 .set(record)
@@ -52,6 +53,7 @@ public class StationRepository {
                 .fetchOptional();
     }
 
+    @CacheEvict(cacheManager = REPOSITORY_CACHE_MANAGER, cacheNames = STATION_REPOSITORY_CACHE, allEntries = true)
     public Optional<StationRecord> delete(long id) {
         return context.delete(STATION)
                 .where(STATION.ID.eq(id))

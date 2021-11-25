@@ -44,6 +44,6 @@ public class StationFetcher {
 
     @DgsData(parentType = "SubscriptionRootType", field = "stations")
     public Publisher<List<Station>> subscribeStations() {
-        return Flux.interval(Duration.ofSeconds(1)).map(t -> stationService.findAll());
+        return Flux.interval(Duration.ofSeconds(5)).map(t -> stationService.findAll());
     }
 }

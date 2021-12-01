@@ -59,7 +59,7 @@ public class StationService {
     }
 
     private int calculateVariance(int target, int actual) {
-        return target - actual;
+        return actual - target;
     }
 
     @Scheduled(fixedRate = 30000)

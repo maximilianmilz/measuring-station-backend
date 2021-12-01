@@ -1,6 +1,6 @@
 package de.thb.ics.repository;
 
-import de.thb.ics.jooq.tables.records.StationRecord;
+import de.thb.ics.repository.jooq.tables.records.StationRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jooq.DSLContext;
@@ -8,12 +8,12 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
-import static de.thb.ics.configuration.CacheConfiguration.REPOSITORY_CACHE_MANAGER;
-import static de.thb.ics.configuration.CacheConfiguration.STATION_REPOSITORY_CACHE;
-import static de.thb.ics.jooq.tables.Station.STATION;
-
 import java.util.List;
 import java.util.Optional;
+
+import static de.thb.ics.configuration.CacheConfiguration.REPOSITORY_CACHE_MANAGER;
+import static de.thb.ics.configuration.CacheConfiguration.STATION_REPOSITORY_CACHE;
+import static de.thb.ics.repository.jooq.tables.Station.STATION;
 
 @Slf4j
 @Repository

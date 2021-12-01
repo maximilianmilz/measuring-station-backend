@@ -1,8 +1,8 @@
 package de.thb.ics.service;
 
-import de.thb.ics.jooq.tables.records.StationRecord;
 import de.thb.ics.model.Station;
 import de.thb.ics.repository.StationRepository;
+import de.thb.ics.repository.jooq.tables.records.StationRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;

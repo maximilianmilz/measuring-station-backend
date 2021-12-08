@@ -1,3 +1,5 @@
+[![docker build](https://github.com/maximilianmilz/measuring-station-backend/actions/workflows/docker.yml/badge.svg?branch=master)](https://github.com/maximilianmilz/measuring-station-backend/actions/workflows/docker.yml)
+
 ## How to start the application?
 * Install the latest [PostgreSQL server](https://www.postgresql.org/download/).
 * Change database credentials and URL in [application.properties](src/main/resources/application.properties).

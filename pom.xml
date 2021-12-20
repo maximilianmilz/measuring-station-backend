@@ -15,7 +15,6 @@
     <description>ics</description>
     <properties>
         <java.version>11</java.version>
-        <netflix-dgs.spring.version>3.10.2</netflix-dgs.spring.version>
     </properties>
 
     <dependencies>

@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Row5;
@@ -51,7 +52,7 @@ public class Station extends TableImpl<StationRecord> {
     /**
      * The column <code>station.id</code>.
      */
-    public final TableField<StationRecord, Long> ID = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<StationRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>station.date</code>.
@@ -112,6 +113,11 @@ public class Station extends TableImpl<StationRecord> {
     }
 
     @Override
+    public Identity<StationRecord, Integer> getIdentity() {
+        return (Identity<StationRecord, Integer>) super.getIdentity();
+    }
+
+    @Override
     public UniqueKey<StationRecord> getPrimaryKey() {
         return Keys.KEY_STATION_PRIMARY;
     }
@@ -152,7 +158,7 @@ public class Station extends TableImpl<StationRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Long, LocalDate, Integer, Integer, Integer> fieldsRow() {
+    public Row5<Integer, LocalDate, Integer, Integer, Integer> fieldsRow() {
         return (Row5) super.fieldsRow();
     }
 }

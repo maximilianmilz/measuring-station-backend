@@ -29,7 +29,7 @@ public class StationRepository {
                 .fetch();
     }
 
-    public Optional<StationRecord> findById(long id) {
+    public Optional<StationRecord> findById(int id) {
         return context.selectFrom(STATION)
                 .where(STATION.ID.eq(id))
                 .fetchOptional();
@@ -45,16 +45,17 @@ public class StationRepository {
     }
 
     @CacheEvict(cacheManager = REPOSITORY_CACHE_MANAGER, cacheNames = STATION_REPOSITORY_CACHE, allEntries = true)
-    public Optional<StationRecord> update(long id, StationRecord record) {
-        return context.update(STATION)
+    public Optional<StationRecord> update(int id, StationRecord record) {
+        context.update(STATION)
                 .set(record)
                 .where(STATION.ID.eq(id))
-                .returning()
-                .fetchOptional();
+                .execute();
+
+        return findById(id);
     }
 
     @CacheEvict(cacheManager = REPOSITORY_CACHE_MANAGER, cacheNames = STATION_REPOSITORY_CACHE, allEntries = true)
-    public Optional<StationRecord> delete(long id) {
+    public Optional<StationRecord> delete(int id) {
         return context.delete(STATION)
                 .where(STATION.ID.eq(id))
                 .returning()

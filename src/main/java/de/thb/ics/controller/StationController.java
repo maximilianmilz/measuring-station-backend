@@ -36,7 +36,7 @@ public class StationController {
             @ApiResponse(responseCode = "404", description = "Station not found.", content = @Content)
     })
     @GetMapping("/{id}/")
-    public Station getStation(@PathVariable("id") Long id) {
+    public Station getStation(@PathVariable("id") Integer id) {
         return stationService.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
     }
@@ -62,7 +62,7 @@ public class StationController {
             @ApiResponse(responseCode = "404", description = "Station not found.", content = @Content)
     })
     @PutMapping("/{id}/")
-    public Station updateStation(@PathVariable("id") Long id,
+    public Station updateStation(@PathVariable("id") Integer id,
                                  @RequestBody Station station) {
         Optional<Station> updatedStation = stationService.updateStation(id, station);
         if (updatedStation.isPresent()) {

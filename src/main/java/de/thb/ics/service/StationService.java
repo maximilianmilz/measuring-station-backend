@@ -26,7 +26,7 @@ public class StationService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<Station> findById(long id) {
+    public Optional<Station> findById(int id) {
         return stationRepository.findById(id).map(this::map);
     }
 
@@ -45,7 +45,7 @@ public class StationService {
         }
     }
 
-    public Optional<Station> updateStation(long id, Station station) {
+    public Optional<Station> updateStation(int id, Station station) {
         Optional<StationRecord> record = stationRepository.findById(id);
         if (record.isPresent()) {
             record.get().setDate(station.getDate());
@@ -58,29 +58,8 @@ public class StationService {
         }
     }
 
-    private int calculateVariance(int target, int actual) {
+    public int calculateVariance(int target, int actual) {
         return actual - target;
-    }
-
-    @Scheduled(fixedRate = 30000)
-    private void createRandomStation() {
-        StationRecord record = new StationRecord();
-
-        int target = getRandomInt(1, 100);
-        int actual = getRandomInt(0, target);
-
-        record.setDate(LocalDate.now());
-        record.setTarget(target);
-        record.setActual(actual);
-        record.setVariance(calculateVariance(target, actual));
-
-        Station station = map(stationRepository.create(record));
-
-        log.debug("Created new Station (id={}).", station.getId());
-    }
-
-    private int getRandomInt(int min, int max) {
-        return (int) (Math.random() * (max - min) + min);
     }
 
     public Station map(StationRecord record) {
